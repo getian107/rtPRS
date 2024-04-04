@@ -4,7 +4,7 @@
 """
 
 Usage:
-python OnlinePRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_eff=POSTERIOR_EFFECTS --psi_est=PSI_ESTIMATES
+python rtPRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_eff=POSTERIOR_EFFECTS --psi_est=PSI_ESTIMATES
                       --vld_prefix=VALIDATION_DATASET_PREFIX --vld_phn_cov=VALIDATION_DATASET_PHENOTYPE_COVARIATES --vld_frq_prefix=VALIDATION_FRQ_FILE_PREFIX
                       --tst_prefix=TESTING_DATASET_PREFIX --tst_phn_cov=TESTING_DATASET_PHENOTYPE_COVARIATES --out_file=OUTPUT_FILENAME
                       [--rate=LEARNING_RATE --imp=IMPLICIT_SGD --order=ORDER_OF_ALGORITHM --chrom=CHROM] 
