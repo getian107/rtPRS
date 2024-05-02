@@ -85,13 +85,13 @@ python rtPRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_ef
    
  - VALIDATION_DATASET_PREFIX (required): Full path and the prefix of the bim file for the validation dataset. This file is used to provide a list of SNPs that are available in the validation/target dataset.
 
- - VALIDATION_DATASET_PHENOTYPE_COVARIATES (required): Full path to the space- or tab-delimited text file containing the phenotypes and covariates for the validation samples. The file shoud following the `PLINK`'s `pheno` file format, i.e., column 1 contains the family ID, column 2 contains the individual ID, column 3 contains the phenotype, and any remaining columns contain covariates.
+ - VALIDATION_DATASET_PHENOTYPE_COVARIATES (required): Full path to the space- or tab-delimited text file containing the phenotypes and covariates for the validation samples. The file should follow `PLINK`'s `pheno` file format (i.e., column 1 contains the family ID, column 2 contains the individual ID, column 3 contains the phenotype, and any remaining columns contain covariates).
 
  - VALIDATION_FRQ_FILE_PREFIX (required): Full path and the prefix of the .frq file output from running `PLINK`'s `--freq` command on the validation samples.
 
  - TESTING_DATASET_PREFIX (required): Full path and the prefix of the bim file for the testing (target) samples.
 
- - TESTING_DATASET_PHENOTYPE_COVARIATES (required): Full path to the space- or tab-delimited text file containing the phenotypes and covariates for the testing (target) samples. The file shoud following the `PLINK`'s `pheno` file format, i.e., column 1 contains the family ID, column 2 contains the individual ID, column 3 contains the phenotype, and any remaining columns contain covariates.
+ - TESTING_DATASET_PHENOTYPE_COVARIATES (required): Full path to the space- or tab-delimited text file containing the phenotypes and covariates for the testing (target) samples. The file should follow `PLINK`'s `pheno` file format (i.e., column 1 contains the family ID, column 2 contains the individual ID, column 3 contains the phenotype, and any remaining columns contain covariates).
 
  - OUTPUT_FILENAME (required): Output filename prefix of the calculated PRS and final posterior effect size estimates.
 
@@ -105,7 +105,7 @@ python rtPRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_ef
 
 ## Output
 
-rtPRS-CS writes two output files to the user-specified directory. The first is a `.txt` file containing the standardized PRS for each individual. The second is a `.pst_eff` file containing the vector of SNP weights after incorporating all target samples.
+rtPRS-CS writes two output files to the user-specified directory. The first is a `.txt` file containing the standardized PRS for each target sample. The second is a `.pst_eff` file containing the vector of SNP weights after incorporating all target samples.
 
 ## Support
 
