@@ -77,35 +77,35 @@ python rtPRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_ef
 `
  - PATH_TO_REFERENCE (required): Full path to the directory that contains the SNP information file and LD reference panels. If the 1000 Genomes reference is used, the folder would contain the SNP information file `snpinfo_mult_1kg_hm3` and one or more of the LD reference files: `ldblk_1kg_afr`, `ldblk_1kg_amr`, `ldblk_1kg_eas`, `ldblk_1kg_eur`, `ldblk_1kg_sas`; if the UK Biobank reference is used, the folder would contain the SNP information file `snpinfo_mult_ukbb_hm3` and one or more of the LD reference files: `ldblk_ukbb_afr`, `ldblk_ukbb_amr`, `ldblk_ukbb_eas`, `ldblk_ukbb_eur`, `ldblk_ukbb_sas`.
 
- - GWAS_SAMPLE_SIZE (required): Sample sizes of the GWAS, in the same order of the GWAS summary statistics files, separated by comma.
+ - GWAS_SAMPLE_SIZE (required): Sample size of the baseline GWAS.
    
- - POSTERIOR_EFFECTS (required): Starting values for SNP effect sizes, output from running **PRS-CS** on a set of baseline GWAS summary statistics.
+ - POSTERIOR_EFFECTS (required): Starting values for SNP effect sizes, output from running **PRS-CS** on the baseline GWAS summary statistics.
    
- - PSI_ESTIMATES (required): SNP local shrinkage parameters output from running **PRS-CS** (with the option --write_psi) on a set of baseline GWAS summary statistics.
+ - PSI_ESTIMATES (required): Shrinkage parameters, output from running **PRS-CS** (with the option `--write_psi`) on the baseline GWAS summary statistics.
    
  - VALIDATION_DATASET_PREFIX (required): Full path and the prefix of the bim file for the validation dataset. This file is used to provide a list of SNPs that are available in the target dataset.
 
- - VALIDATION_DATASET_PHENOTYPE_COVARIATES (required): Full path to the space- or tab-delimited text file containing the validation sample phenotype and covariates values. The file shoud following the PLINK "pheno" file format. i.e. column 1 contains the family ID, column 2 contains the individual ID, column 3 contains the phenotype, and any remaining columns contain covariates.
+ - VALIDATION_DATASET_PHENOTYPE_COVARIATES (required): Full path to the space- or tab-delimited text file containing the phenotypes and covariates for the validation samples. The file shoud following the `PLINK`'s `pheno` file format, i.e., column 1 contains the family ID, column 2 contains the individual ID, column 3 contains the phenotype, and any remaining columns contain covariates.
 
- - VALIDATION_FRQ_FILE_PREFIX (required): Full path and the prefix of the .frq file output from running PLINK's "--freq" command on the validation dataset samples.
+ - VALIDATION_FRQ_FILE_PREFIX (required): Full path and the prefix of the .frq file output from running `PLINK`'s `--freq` command on the validation samples.
 
- - TESTING_DATASET_PREFIX (required): Full path and the prefix of the bim file for the target (test) validation dataset.
+ - TESTING_DATASET_PREFIX (required): Full path and the prefix of the bim file for the testing (target) samples.
 
- - TESTING_DATASET_PHENOTYPE_COVARIATES (required): Full path to the space- or tab-delimited text file containing the test (target) sample phenotype and covariates values. The file shoud following the PLINK "pheno" file format. i.e. column 1 contains the family ID, column 2 contains the individual ID, column 3 contains the phenotype, and any remaining columns contain covariates.
+ - TESTING_DATASET_PHENOTYPE_COVARIATES (required): Full path to the space- or tab-delimited text file containing the phenotypes and covariates for the testing (target) samples. The file shoud following the `PLINK`'s `pheno` file format, i.e., column 1 contains the family ID, column 2 contains the individual ID, column 3 contains the phenotype, and any remaining columns contain covariates.
 
  - OUTPUT_FILENAME (required): Output filename prefix of the calculated PRS and final posterior effect size estimates.
 
  - LEARNING_RATE (optional): The learning rate parameter, controlling how each incoming sample is weighted when updating SNP effect sizes. Default is 1.
 
- - IMPLICIT_SGD (optional): A boolean value indicating whether implicit (True) or explicit (False) stochastic gradient descent should be employed when updating SNP effect sizes. Default is True.
+ - IMPLICIT_SGD (optional): A boolean value indicating whether implicit (True) or explicit (False) stochastic gradient descent is used when updating SNP effect sizes. Default is True.
 
- - ORDER_OF_ALGORITHM (optional): A string indicating whether the 1st or 2nd order derivative be used in SGD optimization. Default is 2nd.
+ - ORDER_OF_ALGORITHM (optional): A string indicating whether the 1st or 2nd order derivative be used in the stochastic gradient descent algorithm. Default is 2nd.
 
- - CHROM (optional): A numeric value or range of values indicating which chromosome(s) should be run. Deafult is 1-23.
+ - CHROM (optional): A numeric value or range of values indicating which chromosome(s) should be run. Default is iterating through 22 autosomes.
 
 ## Output
 
-rtPRS-CS writes two output files to the user-specified directory. The first is a .txt file containing the standardized PRS for each individual. The second is a .pst_eff file containing the vector of SNP weights after incorporating all target (training) samples.
+rtPRS-CS writes two output files to the user-specified directory. The first is a `.txt` file containing the standardized PRS for each individual. The second is a `.pst_eff` file containing the vector of SNP weights after incorporating all target samples.
 
 ## Support
 
