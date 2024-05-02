@@ -83,7 +83,7 @@ python rtPRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_ef
    
  - PSI_ESTIMATES (required): Shrinkage parameters, output from running **PRS-CS** (with the option `--write_psi`) on the baseline GWAS summary statistics.
    
- - VALIDATION_DATASET_PREFIX (required): Full path and the prefix of the bim file for the validation dataset. This file is used to provide a list of SNPs that are available in the target dataset.
+ - VALIDATION_DATASET_PREFIX (required): Full path and the prefix of the bim file for the validation dataset. This file is used to provide a list of SNPs that are available in the validation/target dataset.
 
  - VALIDATION_DATASET_PHENOTYPE_COVARIATES (required): Full path to the space- or tab-delimited text file containing the phenotypes and covariates for the validation samples. The file shoud following the `PLINK`'s `pheno` file format, i.e., column 1 contains the family ID, column 2 contains the individual ID, column 3 contains the phenotype, and any remaining columns contain covariates.
 
