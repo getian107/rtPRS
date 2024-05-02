@@ -1,5 +1,6 @@
 # rtPRS-CS
-**rtPRS-CS** is a python-based command line tool that performs real-time online updating of polygenic risk score (PRS) weights in a target dataset one sample at-a-time. For each target sample, rtPRS-CS first calculates a PRS using the most recent set of SNP weights, then use stochastic gradient descent to update the SNP weights given the genotype, phenotype, and covariates of the target sample.
+**rtPRS-CS** is a python-based command line tool that performs real-time online updating of polygenic risk score (PRS) weights in a target dataset, one sample at-a-time. Given the most recent set of SNP weights, for each new target sample with both phenotypic and genetic information, rtPRS-CS uses stochastic gradient descent to update the SNP weights, adjusting for the effects of a set of covariates.
+
 
 ## Getting Started
 
