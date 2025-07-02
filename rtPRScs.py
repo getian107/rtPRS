@@ -4,9 +4,9 @@
 """
 
 Usage:
-python rtPRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_eff=POSTERIOR_EFFECTS --psi_est=PSI_ESTIMATES
+python OnlinePRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_eff=POSTERIOR_EFFECTS --psi_est=PSI_ESTIMATES
                       --vld_prefix=VALIDATION_DATASET_PREFIX --vld_phn_cov=VALIDATION_DATASET_PHENOTYPE_COVARIATES --vld_frq_prefix=VALIDATION_FRQ_FILE_PREFIX
-                      --tst_prefix=TESTING_DATASET_PREFIX --tst_phn_cov=TESTING_DATASET_PHENOTYPE_COVARIATES --out_file=OUTPUT_FILENAME
+                      --tst_prefix=TESTING_DATASET_PREFIX --tst_phn_cov=TESTING_DATASET_PHENOTYPE_COVARIATES --tst_phn_cov_update=TESTING_DATASET_UPDATED_PHENOTYPE_COVARIATES --out_file=OUTPUT_FILENAME
                       [--rate=LEARNING_RATE --imp=IMPLICIT_SGD --order=ORDER_OF_ALGORITHM --chrom=CHROM] 
 
 
@@ -24,10 +24,10 @@ import write
 
 def parse_param():
     long_opts_list = ['ref_dir=', 'n_gwas=', 'pst_eff=', 'psi_est=', 'vld_prefix=', 'vld_phn_cov=', 'vld_frq_prefix=',
-                      'tst_prefix=', 'tst_phn_cov=', 'out_file=', 'rate=', 'imp=', 'order=', 'chrom=', 'help']
+                      'tst_prefix=', 'tst_phn_cov=', 'tst_phn_cov_update=', 'out_file=', 'rate=', 'imp=', 'order=', 'chrom=', 'help']
 
     param_dict = {'ref_dir': None, 'n_gwas': None, 'pst_eff': None, 'psi_est': None, 'vld_prefix': None, 'vld_phn_cov': None, 'vld_frq_prefix': None,
-                  'tst_prefix': None, 'tst_phn_cov': None, 'out_file': None, 'rate': 1.0, 'imp': 'True', 'order': '2nd', 'chrom': range(1,23)}
+                  'tst_prefix': None, 'tst_phn_cov': None, 'tst_phn_cov_update': None, 'out_file': None, 'rate': 1.0, 'imp': 'True', 'order': '2nd', 'chrom': range(1,23)}
 
     print('\n')
 
@@ -52,6 +52,7 @@ def parse_param():
             elif opt == "--vld_frq_prefix": param_dict['vld_frq_prefix'] = arg
             elif opt == "--tst_prefix": param_dict['tst_prefix'] = arg
             elif opt == "--tst_phn_cov": param_dict['tst_phn_cov'] = arg
+            elif opt == "--tst_phn_cov_update": param_dict['tst_phn_cov_update'] = arg
             elif opt == "--out_file": param_dict['out_file'] = arg
             elif opt == "--rate": param_dict['rate'] = float(arg)
             elif opt == "--imp": param_dict['imp'] = arg
@@ -129,7 +130,7 @@ def main():
         ld_blk, blk_size = parse_genet.parse_ldblk(param_dict['ref_dir'], pst_dict, int(chrom))
 
 
-        indv_dict, prs, beta_updt = online_pred.sgd(param_dict['n_gwas'], phn_mean, phn_std, cov_beta, param_dict['tst_prefix'], param_dict['tst_phn_cov'],
+        indv_dict, prs, beta_updt = online_pred.sgd(param_dict['n_gwas'], phn_mean, phn_std, cov_beta, param_dict['tst_prefix'], param_dict['tst_phn_cov'], param_dict['tst_phn_cov_update'],
                         pst_dict, tst_idx, ld_blk, blk_size, param_dict['rate'], param_dict['imp'], param_dict['order'], int(chrom))
 
 
