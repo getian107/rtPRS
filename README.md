@@ -73,7 +73,7 @@
 python rtPRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_eff=POSTERIOR_EFFECTS --psi_est=PSI_ESTIMATES
                   --vld_prefix=VALIDATION_DATASET_PREFIX --vld_phn_cov=VALIDATION_DATASET_PHENOTYPE_COVARIATES --vld_frq_prefix=VALIDATION_FRQ_FILE_PREFIX
                   --tst_prefix=TESTING_DATASET_PREFIX --tst_phn_cov=TESTING_DATASET_PHENOTYPE_COVARIATES --out_file=OUTPUT_FILENAME
-                  [--rate=LEARNING_RATE --imp=IMPLICIT_SGD --order=ORDER_OF_ALGORITHM --chrom=CHROM] 
+                  [--rate=LEARNING_RATE --imp=IMPLICIT_SGD --order=ORDER_OF_ALGORITHM --tst_phn_cov_update=TESTING_PHENOTYPE_UPDATE --chrom=CHROM] 
 `
  - PATH_TO_REFERENCE (required): Full path to the directory that contains the SNP information file and LD reference panels. If the 1000 Genomes reference is used, the folder would contain the SNP information file `snpinfo_mult_1kg_hm3` and one or more of the LD reference files: `ldblk_1kg_afr`, `ldblk_1kg_amr`, `ldblk_1kg_eas`, `ldblk_1kg_eur`, `ldblk_1kg_sas`; if the UK Biobank reference is used, the folder would contain the SNP information file `snpinfo_mult_ukbb_hm3` and one or more of the LD reference files: `ldblk_ukbb_afr`, `ldblk_ukbb_amr`, `ldblk_ukbb_eas`, `ldblk_ukbb_eur`, `ldblk_ukbb_sas`.
 
@@ -98,6 +98,8 @@ python rtPRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_ef
  - LEARNING_RATE (optional): The learning rate parameter, controlling how each incoming sample is weighted when updating SNP effect sizes. Default is 1.
 
  - IMPLICIT_SGD (optional): A boolean value indicating whether implicit (True) or explicit (False) stochastic gradient descent is used when updating SNP effect sizes. Default is True.
+   
+ - TESTING_PHENOTYPE_UPDATE (optional): If online phenotype updating is requested, the full path to the space- or tab-delimited text file containing the phenotype, covariates, and position of phenotype update. For subjects requiring phenotype update, column 1 contains the FID, column 2 contains the IID, column 3 contains the original phenotype, column 4 contains the new phenotype, column 5 contains the numeric position in the original phenotype file at which point the target individual's phenotype should be updated, and any remaining columns contain covariates.
 
  - ORDER_OF_ALGORITHM (optional): A string indicating whether the 1st or 2nd order derivative be used in the stochastic gradient descent algorithm. Default is 2nd.
 
