@@ -118,11 +118,11 @@ Simulated data for chromosome 22 is provided in /toy_data/ to demonstrate the us
 1) The first step is to run PRS-CS-auto on the baseline summary statistics to obtain starting estimates of the SNP weights (baseline_pst_eff_a1_b0.5_phiauto_chr22.txt), along with estimates of psi (baseline_pst_psi_a1_b0.5_phiauto_chr22.txt).
 
 `
-PRScs.py --ref_dir=/path/to/ldblk_ukbb_eur --bim_prefix=./toy_data/1000GP_HM3 --sst_file=./toy_data/toy_sumstats.txt --n_gwas=50000 --write_psi=True --chrom=22 --out_dir=./toy_data/baseline
+python PRScs.py --ref_dir=/path/to/ldblk_ukbb_eur --bim_prefix=./toy_data/1000GP_HM3 --sst_file=./toy_data/toy_sumstats.txt --n_gwas=50000 --write_psi=True --chrom=22 --out_dir=./toy_data/baseline
 `
  
 2) rtPRS-CS can be run using the output from (1) along with a validation and test dataset. The output will be a PRS for each sample in the test dataset (toy_out_prs_rate1.0_imp_2nd_chr22.txt), along with the final set of SNP weights after incorporating all test samples (toy_out_psteff_rate1.0_imp_2nd_chr22.txt).
 
 `
-OnlinePRScs.py --ref_dir=/path/to/ldblk_ukbb_eur --n_gwas=50000 --pst_eff=./toy_data/baseline_pst_eff_a1_b0.5_phiauto_chr22.txt --psi_est=./toy_data/baseline_pst_psi_a1_b0.5_phiauto_chr22.txt --vld_prefix=./toy_data/1000GP_HM3_EUR_chr22_vld --vld_phn_cov=./toy_data/pheno_vld.txt --tst_prefix=./toy_data/1000GP_HM3_EUR_chr22_tst --tst_phn_cov=./toy_data/pheno_tst.txt --rate=1.0 --imp=True --chrom=22 --out_file=./toy_data/toy_out
+python rtPRScs.py --ref_dir=/path/to/ldblk_ukbb_eur --n_gwas=50000 --pst_eff=./toy_data/baseline_pst_eff_a1_b0.5_phiauto_chr22.txt --psi_est=./toy_data/baseline_pst_psi_a1_b0.5_phiauto_chr22.txt --vld_prefix=./toy_data/1000GP_HM3_EUR_chr22_vld --vld_phn_cov=./toy_data/pheno_vld.txt --tst_prefix=./toy_data/1000GP_HM3_EUR_chr22_tst --tst_phn_cov=./toy_data/pheno_tst.txt --rate=1.0 --imp=True --chrom=22 --out_file=./toy_data/toy_out
 `
