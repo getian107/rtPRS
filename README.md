@@ -58,7 +58,7 @@
     
     UK Biobank reference: [SNP info](https://www.dropbox.com/s/oyn5trwtuei27qj/snpinfo_mult_ukbb_hm3?dl=0 "SNP info") (~108M)
     
-- PRScsx requires Python packages **scipy** (https://www.scipy.org/) and **h5py** (https://www.h5py.org/) installed.
+- rtPRS-CS requires Python packages **scipy** (https://www.scipy.org/) and **h5py** (https://www.h5py.org/) installed.
  
 - Once Python and its dependencies have been installed, running
 
@@ -75,7 +75,7 @@ python rtPRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_ef
                   --tst_prefix=TESTING_DATASET_PREFIX --tst_phn_cov=TESTING_DATASET_PHENOTYPE_COVARIATES --out_file=OUTPUT_FILENAME
                   [--rate=LEARNING_RATE --imp=IMPLICIT_SGD --order=ORDER_OF_ALGORITHM --tst_phn_cov_update=TESTING_PHENOTYPE_UPDATE --chrom=CHROM] 
 `
- - PATH_TO_REFERENCE (required): Full path to the directory that contains the SNP information file and LD reference panels. If the 1000 Genomes reference is used, the folder would contain the SNP information file `snpinfo_mult_1kg_hm3` and one or more of the LD reference files: `ldblk_1kg_afr`, `ldblk_1kg_amr`, `ldblk_1kg_eas`, `ldblk_1kg_eur`, `ldblk_1kg_sas`; if the UK Biobank reference is used, the folder would contain the SNP information file `snpinfo_mult_ukbb_hm3` and one or more of the LD reference files: `ldblk_ukbb_afr`, `ldblk_ukbb_amr`, `ldblk_ukbb_eas`, `ldblk_ukbb_eur`, `ldblk_ukbb_sas`.
+ - PATH_TO_REFERENCE (required): Full path to the directory that contains the SNP information file and LD reference panels. If the 1000 Genomes reference is used, the folder would contain the SNP information file `snpinfo_mult_1kg_hm3` and one of the LD reference files: `ldblk_1kg_afr`, `ldblk_1kg_amr`, `ldblk_1kg_eas`, `ldblk_1kg_eur`, `ldblk_1kg_sas`; if the UK Biobank reference is used, the folder would contain the SNP information file `snpinfo_mult_ukbb_hm3` and one of the LD reference files: `ldblk_ukbb_afr`, `ldblk_ukbb_amr`, `ldblk_ukbb_eas`, `ldblk_ukbb_eur`, `ldblk_ukbb_sas`.
 
  - GWAS_SAMPLE_SIZE (required): Sample size of the baseline GWAS.
    
@@ -101,7 +101,7 @@ python rtPRScs.py --ref_dir=PATH_TO_REFERENCE --n_gwas=GWAS_SAMPLE_SIZE --pst_ef
    
  - TESTING_PHENOTYPE_UPDATE (optional): If online phenotype updating is requested, the full path to the space- or tab-delimited text file containing the phenotype, covariates, and position of phenotype update. For subjects requiring phenotype update, column 1 contains the FID, column 2 contains the IID, column 3 contains the original phenotype, column 4 contains the new phenotype, column 5 contains the numeric position in the original phenotype file at which point the target individual's phenotype should be updated, and any remaining columns contain covariates.
 
- - ORDER_OF_ALGORITHM (optional): A string indicating whether the 1st or 2nd order derivative be used in the stochastic gradient descent algorithm. Default is 2nd.
+ - ORDER_OF_ALGORITHM (optional): A string indicating whether the 1st or 2nd order derivative to be used in the stochastic gradient descent algorithm. Default is 2nd.
 
  - CHROM (optional): A numeric value or range of values indicating which chromosome(s) should be run. Default is iterating through 22 autosomes.
 
@@ -111,11 +111,11 @@ rtPRS-CS writes two output files to the user-specified directory. The first is a
 
 ## Support
 
-Please direct any problems or questions to Tian Ge (tge1@mgh.harvard.edu).
+Please direct any problems or questions to Justin Tubbs (jtubbs@mgh.harvard.edu) or Tian Ge (tge1@mgh.harvard.edu).
 
 ## Toy Example
 
-Simulated data for chromosome 22 is provided in /toy_data/ to demonstrate the usage of rtPRS-CS. It is assumes that a copy of the EUR LD reference panel has been downloaded (see above). 
+Simulated data for chromosome 22 is provided in /toy_data/ to demonstrate the usage of rtPRS-CS. It assumes that a copy of the EUR LD reference panel has been downloaded (see above). 
 
 1) The first step is to run PRS-CS-auto on the baseline summary statistics to obtain starting estimates of the SNP weights (baseline_pst_eff_a1_b0.5_phiauto_chr22.txt), along with estimates of psi (baseline_pst_psi_a1_b0.5_phiauto_chr22.txt).
 
@@ -128,3 +128,4 @@ python PRScs.py --ref_dir=/path/to/ldblk_ukbb_eur --bim_prefix=./toy_data/1000GP
 `
 python rtPRScs.py --ref_dir=/path/to/ldblk_ukbb_eur --n_gwas=50000 --pst_eff=./toy_data/baseline_pst_eff_a1_b0.5_phiauto_chr22.txt --psi_est=./toy_data/baseline_pst_psi_a1_b0.5_phiauto_chr22.txt --vld_prefix=./toy_data/1000GP_HM3_EUR_chr22_vld --vld_phn_cov=./toy_data/pheno_vld.txt --tst_prefix=./toy_data/1000GP_HM3_EUR_chr22_tst --tst_phn_cov=./toy_data/pheno_tst.txt --chrom=22 --out_file=./toy_data/toy_out
 `
+
